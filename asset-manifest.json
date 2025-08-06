@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/iamskasturi/swekast-portfolio/static/css/main.143dead8.css",
-    "main.js": "/iamskasturi/swekast-portfolio/static/js/main.8a7fd5fe.js",
-    "static/js/453.568888ec.chunk.js": "/iamskasturi/swekast-portfolio/static/js/453.568888ec.chunk.js",
-    "index.html": "/iamskasturi/swekast-portfolio/index.html",
-    "main.143dead8.css.map": "/iamskasturi/swekast-portfolio/static/css/main.143dead8.css.map",
-    "main.8a7fd5fe.js.map": "/iamskasturi/swekast-portfolio/static/js/main.8a7fd5fe.js.map",
-    "453.568888ec.chunk.js.map": "/iamskasturi/swekast-portfolio/static/js/453.568888ec.chunk.js.map"
+    "main.css": "/swekast-portfolio/static/css/main.143dead8.css",
+    "main.js": "/swekast-portfolio/static/js/main.00764b0e.js",
+    "static/js/453.568888ec.chunk.js": "/swekast-portfolio/static/js/453.568888ec.chunk.js",
+    "index.html": "/swekast-portfolio/index.html",
+    "main.143dead8.css.map": "/swekast-portfolio/static/css/main.143dead8.css.map",
+    "main.00764b0e.js.map": "/swekast-portfolio/static/js/main.00764b0e.js.map",
+    "453.568888ec.chunk.js.map": "/swekast-portfolio/static/js/453.568888ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.143dead8.css",
-    "static/js/main.8a7fd5fe.js"
+    "static/js/main.00764b0e.js"
   ]
 }
