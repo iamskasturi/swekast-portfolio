@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/swekast-portfolio/static/css/main.143dead8.css",
-    "main.js": "/swekast-portfolio/static/js/main.dc413497.js",
+    "main.js": "/swekast-portfolio/static/js/main.d9ab8da0.js",
     "static/js/453.568888ec.chunk.js": "/swekast-portfolio/static/js/453.568888ec.chunk.js",
     "index.html": "/swekast-portfolio/index.html",
     "main.143dead8.css.map": "/swekast-portfolio/static/css/main.143dead8.css.map",
-    "main.dc413497.js.map": "/swekast-portfolio/static/js/main.dc413497.js.map",
+    "main.d9ab8da0.js.map": "/swekast-portfolio/static/js/main.d9ab8da0.js.map",
     "453.568888ec.chunk.js.map": "/swekast-portfolio/static/js/453.568888ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.143dead8.css",
-    "static/js/main.dc413497.js"
+    "static/js/main.d9ab8da0.js"
   ]
 }
