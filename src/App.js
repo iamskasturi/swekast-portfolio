@@ -42,8 +42,7 @@ const cards = [
       "This card isn’t play—it’s perspective.I’ve worked across industries from connecting blue-collar workers, to empowering B2B marketers, to designing high-stakes gaming products always with the same mindset: build with clarity, lead with humility, and focus on what truly matters.",
     color: "text-[#21808D]",
     type: "popup",
-
-    popupImage: "${process.env.PUBLIC_URL}/images/values.png",
+    popupImage: "/images/values.png",
   },
 ];
 
@@ -97,7 +96,7 @@ export default function App() {
           {/* Profile Photo */}
           <div className="relative">
             <img
-              src="${process.env.PUBLIC_URL}/images/my-profile.jpeg"
+              src="/images/my-profile.jpeg"
               alt="Profile"
               className="w-28 h-28 rounded-full border-4 border-[#21808D] shadow-lg object-cover object-top scale-[1.2]"
             />
@@ -136,9 +135,9 @@ export default function App() {
               <div className="absolute top-10 text-center">
                 <div className="inline-flex items-center gap-2 bg-white border border-[#21808D] px-4 py-1 rounded-full text-sm text-[#1f2d3d] font-medium shadow-sm">
                   <img
-                    src="${process.env.PUBLIC_URL}/images/perplexity.png"
+                    src="/images/perplexity.png"
                     alt="Perplexity"
-                    className"w-5 h-5"
+                    className="w-5 h-5"
                   />
                   Dealer
                 </div>
@@ -225,7 +224,7 @@ export default function App() {
                   return (
                     <img
                       key={i}
-                      src="${process.env.PUBLIC_URL}/images/poker-chip.png"
+                      src="/images/poker-chip.png"
                       alt="Chip"
                       className="flying-chip"
                       style={{
