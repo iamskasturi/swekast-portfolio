@@ -42,7 +42,7 @@ const cards = [
       "This card isn’t play—it’s perspective.I’ve worked across industries from connecting blue-collar workers, to empowering B2B marketers, to designing high-stakes gaming products always with the same mindset: build with clarity, lead with humility, and focus on what truly matters.",
     color: "text-[#21808D]",
     type: "popup",
-    popupImage: `${process.env.PUBLIC_URL}/images/values.png}`
+    popupImage: `${process.env.PUBLIC_URL}/images/values.png`
   },
 ];
 
