@@ -32,3 +32,18 @@ body {
 body {
   font-family: 'Inter', sans-serif;
 }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.scroll-smooth { scroll-behavior: smooth; }
+
+/* Better touch behavior for horizontal rails on iOS */
+.touch-pan-x { touch-action: pan-x; }
+
+/* Safe-area padding for iPhone home indicator if you want it */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Lock the page on small screens; the mobile layer manages its own scrolling */
+@media (max-width: 767px) {
+  html, body { height: 100%; overflow: hidden; }
+}
