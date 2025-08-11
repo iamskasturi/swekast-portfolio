@@ -37,13 +37,40 @@ body {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .scroll-smooth { scroll-behavior: smooth; }
 
+.content-clip {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* default clamp; can be overridden inline with style prop */
+  -webkit-line-clamp: 8;
+}
+
+.no-clamp {
+  display: block !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: initial !important;
+}
+
+.mobile-felt {
+  /* Use dynamic viewport units when supported to avoid 100vh bugs on iOS */
+  height: min(78dvh, 620px);
+}
+@supports not (height: 1dvh) {
+  .mobile-felt { height: min(78vh, 620px); }
+}
+
+
+
+
 /* Better touch behavior for horizontal rails on iOS */
 .touch-pan-x { touch-action: pan-x; }
 
 /* Safe-area padding for iPhone home indicator if you want it */
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 
-/* Lock the page on small screens; the mobile layer manages its own scrolling */
-@media (max-width: 767px) {
-  html, body { height: 100%; overflow: hidden; }
+
+@media(min-width: 768px) {
+  html, body { overflow-x: hidden; }
 }
