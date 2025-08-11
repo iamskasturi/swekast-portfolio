@@ -499,7 +499,7 @@ export default function App() {
                   </button>
                   <button
                     onClick={() => setShowFoldModal(true)}
-                    className="w-48 h-10 rounded-full bg-[#21808D] text-white font-semibold shadow-md hover:bg-gray-50 transition flex items-center justify-center"
+                    className="w-48 h-10 rounded-full bg-[#21808D] text-white font-semibold shadow-md hover:bg-[#1b6e78] transition flex items-center justify-center"
                   >
                     Fold 🚫
                   </button>
@@ -619,7 +619,7 @@ export default function App() {
                         setShowFoldModal(false);
                         handleCardAction(cards[round - 1]);
                       }}
-                      className="bg-[#21808D] text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-50 transition"
+                      className="bg-[#21808D] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#1b6e78] transition"
                     >
                       See Your Hand ♠️
                     </button>
