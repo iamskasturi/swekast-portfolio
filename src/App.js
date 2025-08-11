@@ -351,7 +351,7 @@ export default function App() {
                                           text-[clamp(14px,3.9vw,18px)] md:text-lg"
           >
             <p>
-              I approach product the same way I approached this application —
+              I approach product the same way I approached Perplexity’s vision —
             </p>
             <p className="mt-1 font-semibold text-[#21808D]">
               with intent, creativity, and clarity.
@@ -373,7 +373,7 @@ export default function App() {
         <>
           <div className="hidden md:block w-full text-center mt-2">
             <h1 className="text-5xl font-bold mb-6 text-center pb-2 animate-pulse">
-              ♠️ The Perplexity Table: My APM Fit, Card by Card
+              ♠️ The Perplexity Table: My Fit, Card by Card
             </h1>
           </div>
           {/* Mobile version */}
@@ -390,7 +390,7 @@ export default function App() {
               ♠️ The Perplexity Table
               <br />
               <span className="text-sm font-normal">
-                My APM Fit, Card by Card
+                My Fit, Card by Card
               </span>
             </h1>
           </div>
