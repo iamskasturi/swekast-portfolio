@@ -14,7 +14,7 @@ const cards = [
   {
     title: "Chess Bounty",
     content:
-      "In Chess Bounty, a game I pitched to our CEO, each piece holds a randomized cash value—turning strategy on its head. Suddenly, the bishop may be worth more than the king. With leadership buy-in, it’s on a path toward early development—reminding me that fresh perspectives and calculated risks can redefine user experience, a mindset I’d apply at Perplexity.",
+      "In Chess Bounty, a game I pitched to our CEO, each piece holds a randomized cash value—turning strategy on its head. Suddenly, the bishop may be worth more than the king. With leadership buy-in, it’s on a path toward early development—reminding me that fresh perspectives and calculated risks can redefine user experience, a mindset I’d bring to your org.",
     link: "https://www.youtube.com/watch?v=HDP2StWYRfk",
     color: "text-[#F4A261]",
     type: "video",
@@ -23,7 +23,7 @@ const cards = [
     title: "Built on Trust: Zync",
     action: "Click to know more",
     content:
-      "I founded Zync, a trust-first network for students, alumni, and parents making critical academic or career decisions. It connects people with those who’ve walked the path—offering timely, peer-based guidance that builds confidence and clarity—similar to how Perplexity empowers users with trusted, concise answers.",
+      "I founded Zync, a trust-first network for students, alumni, and parents making critical academic or career decisions. It connects people with those who’ve walked the path—offering timely, peer-based guidance that builds confidence and clarity—similar to how your org empowers users with trusted, concise answers.",
     link: "https://www.youtube.com/watch?v=BOSkUm1JSek",
     color: "text-[#21808D]",
     type: "video",
@@ -31,9 +31,9 @@ const cards = [
   {
     title: "Helping Destiny Find Its Path",
     content:
-      "I help Destiny, a hyperlocal social app, navigate architectural and technical challenges—driven by the belief that some ideas deserve momentum, even if they’re not mine. the right help at the right time isn’t just support—it’s product thinking in action—something I see in Perplexity’s vision and want to help amplify.",
+      "I help Destiny, a hyperlocal social app, navigate architectural and technical challenges—driven by the belief that some ideas deserve momentum, even if they’re not mine. the right help at the right time isn’t just support—it’s product thinking in action—something I see in your vision and want to help amplify.",
     color: "text-[#F4A261]",
-    link: "https://dms.licdn.com/playlist/vid/v2/D5605AQE9awszIO-tgg/mp4-720p-30fp-crf28/B56ZYL_UWDHEBg-/0/1743957894590?e=1755118800&v=beta&t=8BPCLqeNcudrSYtR0iRLZ6IGOOOVs_Y9NyJ3ed6-bSg",
+    link: "https://www.youtube.com/shorts/Fv6g1DaR8_g",
     type: "video",
   },
   {
@@ -45,6 +45,56 @@ const cards = [
     popupImage: `${process.env.PUBLIC_URL}/images/values.png`,
   },
 ];
+
+function toYouTubeEmbed(link) {
+  if (!link) return link;
+  try {
+    const url = new URL(link);
+    const host = url.hostname.replace(/^www\./, '');
+
+    let id = '';
+    // youtu.be/<id>
+    if (host === 'youtu.be') {
+      id = url.pathname.slice(1);
+    }
+    // youtube.com/* or studio.youtube.com/*
+    else if (host.endsWith('youtube.com')) {
+      const p = url.pathname;
+      if (p === '/watch') id = url.searchParams.get('v') || '';
+      else if (p.startsWith('/shorts/')) id = p.split('/')[2] || '';
+      else if (p.startsWith('/embed/')) id = p.split('/')[2] || '';
+      else if (p.startsWith('/live/')) id = p.split('/')[2] || '';
+      else if (p.startsWith('/video/')) id = p.split('/')[2] || ''; // studio.youtube.com/video/<id>
+    }
+
+    if (!id) return link;
+
+    // preserve start time if present (?t=90 or 1m30s)
+    const parseStart = (v) => {
+      if (!v) return '';
+      if (/^\d+$/.test(v)) return v;
+      let s = 0;
+      const h = /(\d+)h/.exec(v)?.[1];
+      const m = /(\d+)m/.exec(v)?.[1];
+      const sec = /(\d+)s/.exec(v)?.[1];
+      if (h) s += parseInt(h, 10) * 3600;
+      if (m) s += parseInt(m, 10) * 60;
+      if (sec) s += parseInt(sec, 10);
+      return s ? String(s) : '';
+    };
+    const start = parseStart(url.searchParams.get('start') || url.searchParams.get('t') || '');
+
+    const params = new URLSearchParams();
+    if (start) params.set('start', start);
+    const list = url.searchParams.get('list');
+    if (list) params.set('list', list);
+
+    return `https://www.youtube.com/embed/${id}${params.toString() ? `?${params}` : ''}`;
+  } catch {
+    return link;
+  }
+}
+
 
 function MobileSwipePoker({
   cards,
@@ -131,7 +181,7 @@ function MobileSwipePoker({
           >
             <div className="inline-flex items-center gap-2 bg-white border border-[#21808D] px-3 py-0.5 rounded-full text-[12px] text-[#1f2d3d] font-medium shadow-sm">
               <img
-                src={`${process.env.PUBLIC_URL}/images/perplexity.png`}
+                src={`${process.env.PUBLIC_URL}/images/north-star.png`}
                 alt="Perplexity"
                 className="w-4 h-4"
               />
@@ -247,17 +297,15 @@ function MobileSwipePoker({
         <div className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-md flex items-center justify-center">
           <div className="relative w-[92%] max-w-3xl h-[70%] rounded-xl overflow-hidden shadow-2xl border-4 border-white">
             <iframe
-              src={
-                iframeCard.type === "video" &&
-                iframeCard.link.includes("youtube.com")
-                  ? iframeCard.link.replace("watch?v=", "embed/")
-                  : iframeCard.link
-              }
+              src={iframeCard.type === "video" ? toYouTubeEmbed(iframeCard.link) : iframeCard.link}
               title="Card Content"
               className="w-full h-full"
-              allow="autoplay; encrypted-media"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
             />
+
             <button
               onClick={onCloseOverlay}
               className="absolute top-3 right-3 z-10 bg-[#21808D] hover:bg-[#1b6e78] text-white px-4 py-1 rounded-full text-sm shadow-lg transition"
@@ -351,7 +399,7 @@ export default function App() {
                                           text-[clamp(14px,3.9vw,18px)] md:text-lg"
           >
             <p>
-              I approach product the same way I approached Perplexity’s vision —
+              I approach product the same way I approached your vision —
             </p>
             <p className="mt-1 font-semibold text-[#21808D]">
               with intent, creativity, and clarity.
@@ -373,7 +421,7 @@ export default function App() {
         <>
           <div className="hidden md:block w-full text-center mt-2">
             <h1 className="text-5xl font-bold mb-6 text-center pb-2 animate-pulse">
-              ♠️ The Perplexity Table: My Fit, Card by Card
+              ♠️ Product Fit: Problem → Approach → Outcome (Card by Card)
             </h1>
           </div>
           {/* Mobile version */}
@@ -387,10 +435,10 @@ export default function App() {
                 margin: 0,
               }}
             >
-              ♠️ The Perplexity Table
+              ♠️ Product Fit
               <br />
               <span className="text-sm font-normal">
-                My Fit, Card by Card
+                Problem → Approach → Outcome
               </span>
             </h1>
           </div>
@@ -406,7 +454,7 @@ export default function App() {
                 <div className="absolute top-8 left-1/2 -translate-x-1/2">
                   <div className="inline-flex items-center gap-2 bg-white border border-[#21808D] px-4 py-1 rounded-full text-sm text-[#1f2d3d] font-medium shadow-sm">
                     <img
-                      src={`${process.env.PUBLIC_URL}/images/perplexity.png`}
+                      src={`${process.env.PUBLIC_URL}/images/north-star.png`}
                       alt="Perplexity"
                       className="w-5 h-5"
                     />
@@ -431,18 +479,16 @@ export default function App() {
                           transition={{ duration: 0.4 }}
                           className="relative w-[90%] max-w-6xl h-[80%] rounded-xl overflow-hidden shadow-2xl border-4 border-white"
                         >
-                          <iframe
-                            src={
-                              iframeCard.type === "video" &&
-                              iframeCard.link.includes("youtube.com")
-                                ? iframeCard.link.replace("watch?v=", "embed/")
-                                : iframeCard.link
-                            }
-                            title="Card Content"
-                            className="w-full h-full"
-                            allow="autoplay; encrypted-media"
-                            allowFullScreen
-                          />
+                         <iframe
+                           src={iframeCard.type === "video" ? toYouTubeEmbed(iframeCard.link) : iframeCard.link}
+                           title="Card Content"
+                           className="w-full h-full"
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                           allowFullScreen
+                           loading="lazy"
+                           referrerPolicy="strict-origin-when-cross-origin"
+                         />
+
 
                           <button
                             onClick={handleCloseContent}
